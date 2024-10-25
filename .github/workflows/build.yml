@@ -70,12 +70,12 @@ jobs:
       if: startsWith(matrix.os, 'windows')
       run: |
         cmake -G "Visual Studio 16 2019" -A Win32 -B build -DCMAKE_INSTALL_PREFIX="dist"
-        msbuild -verbosity:normal /property:Configuration=Release build/INSTALL.vcxproj
+        msbuild /m -verbosity:normal /property:Configuration=Release build/INSTALL.vcxproj
     - name: Build on Windows with vgui
       if: startsWith(matrix.os, 'windows')
       run: |
         cmake -G "Visual Studio 16 2019" -A Win32 -B build -DUSE_VGUI=ON -DCMAKE_INSTALL_PREFIX="dist-vgui"
-        msbuild -verbosity:normal /property:Configuration=Release build/INSTALL.vcxproj
+        msbuild /m -verbosity:normal /property:Configuration=Release build/INSTALL.vcxproj
 
     - name: Extract branch name
       shell: bash
