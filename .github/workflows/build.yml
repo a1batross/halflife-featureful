@@ -69,13 +69,15 @@ jobs:
     - name: Build on Windows
       if: startsWith(matrix.os, 'windows')
       run: |
-        cmake -G "Visual Studio 16 2019" -A Win32 -B build -DCMAKE_INSTALL_PREFIX="dist"
-        msbuild -verbosity:normal /property:Configuration=Release build/INSTALL.vcxproj
+        cmake -A Win32 -B build -DCMAKE_INSTALL_PREFIX="dist"
+        cmake --build build --config Release --target all
+        cmake --build build --config Release --target install
     - name: Build on Windows with vgui
       if: startsWith(matrix.os, 'windows')
       run: |
-        cmake -G "Visual Studio 16 2019" -A Win32 -B build -DUSE_VGUI=ON -DCMAKE_INSTALL_PREFIX="dist-vgui"
-        msbuild -verbosity:normal /property:Configuration=Release build/INSTALL.vcxproj
+        cmake -A Win32 -B build -DUSE_VGUI=ON -DCMAKE_INSTALL_PREFIX="dist-vgui"
+        cmake --build build-vgui --config Release --target all
+        cmake --build build-vgui --config Release --target install
 
     - name: Extract branch name
       shell: bash
