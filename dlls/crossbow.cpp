@@ -405,7 +405,7 @@ void CCrossbow::FireBolt()
 	Vector vecSrc	= m_pPlayer->GetGunPosition() - gpGlobals->v_up * 2.0f;
 	Vector vecDir	= gpGlobals->v_forward;
 
-	CCrossbowBolt *pBolt = CCrossbowBolt::BoltCreate();
+	CCrossbowBolt *pBolt = nullptr;//CCrossbowBolt::BoltCreate();
 	pBolt->pev->origin = vecSrc;
 	pBolt->pev->angles = anglesAim;
 	pBolt->pev->owner = m_pPlayer->edict();
